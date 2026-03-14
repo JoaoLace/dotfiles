@@ -1,0 +1,47 @@
+theme = "1"
+
+
+# daFundo transparente
+
+[keys.normal]
+C-s = ":w"                   # Ctrl+S salvar
+C-o = ":open ~/.config/helix/config.toml"  # Ctrl+O abrir config
+C-q = ":quit"                 # Ctrl+Q fechar Helix
+C-a = "select_all"            # Ctrl+A selecionar tudo
+u = "undo"                    # Ctrl+Z funciona como undo
+U = "redo"                    # Ctrl+Shift+Z redo
+
+[keys.insert]
+C-x = "completion"             # autocomplete
+C-q = ":quit"                  # fechar
+C-S-a = "select_all"
+C-a = "extend_line_below"
+C-left  = "move_prev_word_start"
+C-right = "move_next_word_start"
+C-z = "undo"
+C-y ="redo"
+del = "delete_selection"
+C-s =  ":w"
+C-f = "search"
+C-n = "search_next"
+C-p = "search_prev"
+C-c = "yank_to_clipboard"
+C-v = "paste_clipboard_after"
+
+[keys.select]
+# Selecionar palavras com Ctrl + Shift + Seta
+C-S-left  = "move_next_word_start"
+C-S-right = "move_prev_word_start"
+# Navegar entre palavras com Ctrl + Seta
+# Apagar tudo selecionado
+del  = "delete_selection"
+backspace = "delete_selection"
+
+# Exemplo de mapeamento de movimentos básicos no modo normal
+h = "move_char_left"
+j = "move_visual_line_down"
+k = "move_visual_line_up"
+l = "move_char_right"
+w = "move_next_word_start"
+b = "move_prev_word_start"
+e = "move_next_word_start"

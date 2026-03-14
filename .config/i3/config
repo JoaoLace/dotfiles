@@ -1,0 +1,145 @@
+set $mod Mod4
+font pango:monospace 8
+
+set $XCURSOR_THEME "Breeze"
+set $XCURSOR_SIZE "24"
+
+
+
+# >>>>>>> Crucial Startup <<<<<<<
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id /usr/lib/gsd-xsettings
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id xrandr -r 75.00
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/w6.jpg
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
+exec_always --no-startup-id dunst
+exec --no-startup-id ~/spotify_notify.sh
+exec --no-startup-id caffeine &
+exec --no-startup-id picom
+# Carrega configurações do Xresources (incluindo tema de cursor)
+exec_always --no-startup-id xrdb -merge ~/.Xresources
+
+
+# Audio controls
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Floating / tiling
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# Window management
+bindsym $mod+q kill
+bindsym $mod+d exec rofi -show drun
+bindsym $mod+Return exec kitty
+
+bindsym mod1+f exec firefox
+bindsym $mod+w exec nemo
+
+# >>>>>>>> i3 Gaps Config <<<<<<<<
+gaps inner 0
+gaps top 0
+gaps bottom 0
+gaps right 0
+gaps left 0
+
+# >>>>>>>> Border Config <<<<<<<<<
+default_border pixel 1
+default_floating_border pixel 1
+
+client.focused          #454545 #454545 #454545 #454545   #454545
+client.focused_inactive #181818 #181818 #181818 #181818   #181818
+client.unfocused        #181818 #181818 #181818 #181818   #181818
+
+# Container focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move containers
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split
+bindsym $mod+v split v
+bindsym $mod+Shift+v split h
+
+# Fullscreen / floating
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+
+# Workspaces
+
+
+
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+bindsym $mod+Shift+r restart
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+# Screenshots
+bindsym Shift+Print exec flameshot gui
+bindsym Print exec scrot ~/Pictures/screenshot_%Y-%m-%d_%H-%M-%S.png
+bindsym $mod+Print exec scrot -s -q 100 -e 'xclip -selection clipboard -t image/png -i $f'
+ 
+
+# Misc
+bindsym mod1+Tab exec setxkbmap -query | grep us && setxkbmap -layout br || setxkbmap -layout us
+
+# Polybar themes
+bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/launch.sh dark
+bindsym $mod+Shift+m exec --no-startup-id ~/.config/polybar/launch.sh light
+
+# Random config
+bindsym $mod+b exec firefox
+bindsym $mod+c exec code
+bindsym $mod+o exec obsidian
+

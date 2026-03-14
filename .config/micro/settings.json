@@ -1,0 +1,11 @@
+{
+    "colorscheme": "nord-16",
+
+     "filetype_overrides": {
+        "config": "conf"
+    },
+
+    "pluginrepos": [
+        "https://raw.githubusercontent.com/weebi/micro-preview/master/repo.json"
+    ]
+}

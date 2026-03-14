@@ -1,0 +1,19 @@
+[keys.normal]
+C-s = ":w"                 # Ctrl+S salva
+z = "undo"                 # 'z' desfaz
+Z = "redo"                 # 'Shift+z' refaz
+C-c = "yank"               # copiar
+C-x = "delete_selection"    # cortar
+C-v = "paste_after"        # colar
+C-f = "search"             # buscar
+C-p = "file_picker"        # abrir arquivo rápido
+
+[keys.insert]
+C-s = ":w"
+z = "undo"
+Z = "redo"
+C-c = "yank"
+C-x = "delete_selection"
+C-v = "paste_after"
+C-f = "search"
+C-p = "file_picker"

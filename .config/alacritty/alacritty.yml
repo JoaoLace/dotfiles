@@ -1,0 +1,55 @@
+# =========================
+# Alacritty Configuration
+# =========================
+
+# Font configuration
+font:
+  normal:
+    family: monospace   # você pode trocar para "Noto Sans Mono", "Hack", etc.
+    style: Regular
+  size: 11.0
+
+# Colors
+colors:
+  primary:
+    background: '0x0a0b0c'  # cor de fundo
+    foreground: '0xffffff'  # texto branco
+  normal:
+    # mantêm as cores normais
+  cursor:
+    text: '0x0a0b0c'
+    cursor: '0xffffff'
+  selection:
+    text: '0x0a0b0c'
+    background: '0x555555'
+
+# Para transparência
+
+
+
+# Window settings
+window:
+  padding:
+    x: 5
+    y: 5
+  dynamic_title: true
+  decorations: full  # barra de título e borda
+  startup_mode: Windowed
+  opacity: 0.8  # valor entre 0.0 (transparente) e 1.0 (opaco)
+
+# Key bindings (exemplos)
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste }
+  - { key: C,        mods: Control|Shift, action: Copy }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - { key: Num0,     mods: Control,       action: ResetFontSize }
+
+# Scrolling
+scrolling:
+  history: 10000
+  multiplier: 3
+
+# Shell (usa sua shell padrão)
+shell:
+  program: /bin/bash

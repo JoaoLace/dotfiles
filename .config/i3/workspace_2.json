@@ -1,0 +1,64 @@
+{
+    "type": "workspace",
+    "layout": "splith",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "percent": 0.51586651996565,
+            "type": "con",
+            "swallows": [
+                { "class": "^kitty$", "title": "^calcure$" }
+            ]
+        },
+        {
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splitv",
+            "percent": 0.484133480034349,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "floating": "auto_off",
+                    "layout": "splith",
+                    "percent": 0.5,
+                    "type": "con",
+                    "nodes": [
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "percent": 0.5,
+                            "type": "con",
+                            "swallows": [
+                                { "class": "^kitty$", "title": "^mdp .*todo\\.md$" }
+                            ]
+                        },
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "percent": 0.5,
+                            "type": "con",
+                            "swallows": [
+                                { "class": "^kitty$", "title": "^~$" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 1,
+                    "floating": "auto_off",
+                    "percent": 0.5,
+                    "type": "con",
+                    "swallows": [
+                        { "class": "^kitty$", "title": "^btop$" }
+                    ]
+                }
+            ]
+        }
+    ]
+}

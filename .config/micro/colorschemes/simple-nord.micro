@@ -1,0 +1,12 @@
+# Simple-Nord for Micro
+
+syntax "c++" "\.cpp$" "\.h$" "\.hpp$"
+
+color normal #D8DEE9
+color comment #4C566A
+color keyword #81A1C1
+color string #A3BE8C
+color number #B48EAD
+color type #8FBCBB
+color constant #EBCB8B
+color preprocessor #D08770

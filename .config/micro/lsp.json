@@ -1,0 +1,12 @@
+{
+    "lsp": {
+        "python": {
+            "command": "pyright-langserver --stdio",
+            "filetypes": ["py"]
+        },
+        "cpp": {
+            "command": "clangd",
+            "filetypes": ["c", "cpp", "h", "hpp"]
+        }
+    }
+}
