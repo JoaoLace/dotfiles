@@ -5,4 +5,7 @@
 
 ---@module 'lazy'
 ---@type LazySpec
-return {}
+return {
+  require 'custom.plugins.obsidian',
+  require 'custom.plugins.treesitter',
+}

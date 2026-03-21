@@ -138,7 +138,8 @@ vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
-
+-- Obsidian Plugin Config
+vim.opt.conceallevel = 2
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -166,6 +167,14 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
+-- Spellcheking
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown', 'c', 'cpp', 'python', 'typst' },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = { 'pt', 'en' }
+  end,
+})
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
@@ -250,6 +259,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+-- Handle gf command
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'ObsidianNoteEnter',
+  callback = function()
+    vim.keymap.set('n', 'gf', function()
+      vim.cmd 'vsplit'
+      vim.cmd 'Obsidian follow_link'
+    end, {
+      buffer = true,
+      desc = 'Follow obsidian link in vsplit',
+    })
+  end,
+})
+vim.opt.equalalways = true
 -- Fix tab size (Clang)
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -647,6 +670,12 @@ require('lazy').setup({
       ---@type table<string, vim.lsp.Config>
       local servers = {
         clangd = {},
+        tinymist = {
+          settings = {
+            formatterMode = 'typstyle',
+            exportPdf = 'onSave',
+          },
+        },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -968,7 +997,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
