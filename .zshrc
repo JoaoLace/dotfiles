@@ -110,12 +110,12 @@ alias teclado='setxkbmap -layout br -variant abnt2'
 alias searchProcess='ps aux | grep'
 alias work2='i3-resurrect restore -w 2'
 alias cursor='xrdb -merge ~/.Xresources'
+alias fuzzycopy='realpath "$(fzf)" | xclip -selection clipboard'
+alias dotfiles='/usr/bin/git --git-dir=/home/joao/.dotfiles/ --work-tree=/home/joao'
 
 export PATH="$HOME/bin:$PATH"
-export EDITOR=micro
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/opt/flutter/bin"
-
-export EDITOR=helix
-export VISUAL=helix
-alias dotfiles='/usr/bin/git --git-dir=/home/joao/.dotfiles/ --work-tree=/home/joao'
+export EDITOR=nvim
+export VISUAL=nvim
+export PATH="$HOME/.local/bin:$PATH"
