@@ -323,7 +323,22 @@ require('lazy').setup({
   },
 
   -- Autopair plugin
-  { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {},
+    config = function()
+      local npairs = require 'nvim-autopairs'
+      local Rule = require 'nvim-autopairs.rule'
+
+      npairs.setup {}
+
+      npairs.add_rules {
+
+        Rule('$', '$', 'typst'),
+      }
+    end,
+  },
 
   { 'NMAC427/guess-indent.nvim', opts = {} },
 
@@ -875,27 +890,11 @@ require('lazy').setup({
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-    end,
-  },
+  -- You can easily change to a different colorscheme.
+  -- Change the name of the colorscheme plugin below, and then
+  -- change the command in the config to whatever the name of that colorscheme is.
+  --
+  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 
   -- Highlight todo, notes, etc in comments
   {
@@ -1025,5 +1024,13 @@ require('lazy').setup({
   },
 })
 
+local ls = require 'luasnip'
+ls.add_snippets('markdown', {
+  ls.snippet('typst', {
+    ls.text_node { '```typst', '' },
+    ls.insert_node(1),
+    ls.text_node { '', '```' },
+  }),
+})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

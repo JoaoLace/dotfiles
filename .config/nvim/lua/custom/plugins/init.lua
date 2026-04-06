@@ -8,4 +8,5 @@
 return {
   require 'custom.plugins.obsidian',
   require 'custom.plugins.treesitter',
+  require 'custom.plugins.theme',
 }
