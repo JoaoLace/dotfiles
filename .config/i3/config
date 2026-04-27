@@ -17,6 +17,7 @@ exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id dunst
 exec --no-startup-id ~/spotify_notify.sh
+exec --no-startup-id ~/timew-notify.sh
 exec --no-startup-id caffeine &
 exec --no-startup-id picom
 exec_always --no-startup-id setxkbmap -option caps:escape
@@ -143,4 +144,8 @@ bindsym $mod+Shift+m exec --no-startup-id ~/.config/polybar/launch.sh light
 bindsym $mod+b exec firefox
 bindsym $mod+c exec code
 bindsym $mod+o exec obsidian
+bindsym --release Caps_Lock exec --no-startup-id ~/.local/bin/mc-f3.sh
 
+# Atalho para esticar a tela do Minecraft (ex: Mod+Shift+z)
+bindsym $mod+Shift+z exec --no-startup-id /home/joao/code/scripts/mine.sh
+for_window [title="Ninjabrain Bot"] floating enable, sticky enable
