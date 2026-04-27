@@ -112,6 +112,13 @@ alias work2='i3-resurrect restore -w 2'
 alias cursor='xrdb -merge ~/.Xresources'
 alias fuzzycopy='realpath "$(fzf)" | xclip -selection clipboard'
 alias dotfiles='/usr/bin/git --git-dir=/home/joao/.dotfiles/ --work-tree=/home/joao'
+alias OO='cd /home/joao/Obsidian-Vault/'
+alias home='cd /home/joao/'
+alias caps-esc='setxkbmap -option caps:escape'
+alias caps-f3='setxkbmap -option && xmodmap -e "keycode 66 = F3"'
+alias tw='timew start'
+alias tws='timew stop'
+alias twl='timew summary'
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -119,3 +126,4 @@ export PATH="$PATH:/opt/flutter/bin"
 export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
+export OBSIDIAN_REST_API_KEY="109aa499981db9efd8c5957bf76985f3dfadff7c40c3ad550c94c0fcb424e602"
