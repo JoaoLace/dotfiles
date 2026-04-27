@@ -95,7 +95,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -259,19 +259,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
--- Handle gf command
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'ObsidianNoteEnter',
-  callback = function()
-    vim.keymap.set('n', 'gf', function()
-      vim.cmd 'vsplit'
-      vim.cmd 'Obsidian follow_link'
-    end, {
-      buffer = true,
-      desc = 'Follow obsidian link in vsplit',
-    })
-  end,
-})
 vim.opt.equalalways = true
 -- Fix tab size (Clang)
 
@@ -499,7 +486,30 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader><leader>', function()
+        local actions = require 'telescope.actions'
+        local action_state = require 'telescope.actions.state'
+
+        require('telescope.builtin').buffers {
+          initial_mode = 'normal',
+          attach_mappings = function(prompt_bufnr, map)
+            -- Define a custom delete function
+            local delete_buf = function()
+              local selection = action_state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+            end
+
+            -- Map 'd' in normal mode to delete the buffer
+            map('n', 'd', delete_buf)
+
+            -- Map 'Ctrl-d' in insert mode to delete the buffer
+            map('i', '<C-d>', delete_buf)
+
+            return true
+          end,
+        }
+      end, { desc = '[ ] Find and manage existing buffers' })
 
       -- This runs on LSP attach per buffer (see main LSP attach function in 'neovim/nvim-lspconfig' config for more info,
       -- it is better explained there). This allows easily switching between pickers if you prefer using something else!
@@ -950,7 +960,7 @@ require('lazy').setup({
     branch = 'main',
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
-      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'latex' }
       require('nvim-treesitter').install(parsers)
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
@@ -968,6 +978,7 @@ require('lazy').setup({
           -- for more info on folds see `:help folds`
           -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
           -- vim.wo.foldmethod = 'expr'
+          -- vim.opt.foldenable = false
 
           -- enables treesitter based indentation
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
