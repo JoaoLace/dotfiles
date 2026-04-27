@@ -126,4 +126,3 @@ export PATH="$PATH:/opt/flutter/bin"
 export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
-export OBSIDIAN_REST_API_KEY="109aa499981db9efd8c5957bf76985f3dfadff7c40c3ad550c94c0fcb424e602"
