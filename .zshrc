@@ -119,6 +119,7 @@ alias caps-f3='setxkbmap -option && xmodmap -e "keycode 66 = F3"'
 alias tw='timew start'
 alias tws='timew stop'
 alias twl='timew summary'
+alias sync-imgs='/home/joao/code/c/imgs-obsidian/./out'
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -126,3 +127,4 @@ export PATH="$PATH:/opt/flutter/bin"
 export EDITOR=nvim
 export VISUAL=nvim
 export PATH="$HOME/.local/bin:$PATH"
+export OBSIDIAN_REST_API_KEY="109aa499981db9efd8c5957bf76985f3dfadff7c40c3ad550c94c0fcb424e602"
